@@ -23,14 +23,10 @@ public class Main {
             properties.load(fileInputStream);
 
             String driver = properties.getProperty("driver");
+            DaoFactory targetdaoFactory = daoFactories.stream().filter(daoFactory -> daoFactory.isSupportDBDriver(driver)).findFirst().orElseThrow(() -> new IllegalArgumentException("지원하지 않는 db타입입니다."));
 
-            Optional<DaoFactory> targetDaoFactory = daoFactories.stream().filter(daoFactory -> daoFactory.isSupportDBDriver(driver)).findFirst();
-            if(targetDaoFactory.isPresent()) {
-                userDao = targetDaoFactory.get().getUserDao();
-                productDao = targetDaoFactory.get().getProductDao();
-            } else {
-                throw new IllegalArgumentException("지원하지 않는 db타입입니다.");
-            }
+            userDao = targetdaoFactory.getUserDao();
+            productDao = targetdaoFactory.getProductDao();
 
             userDao.insertUser(new User());
             userDao.updateUser(new User());
