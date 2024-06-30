@@ -13,20 +13,30 @@ public class Experience {
     }
 
     public boolean setExperience(int experience) {
-        if(experience < 0) {
-            throw new IllegalArgumentException("experience must be greater than or equal to 0");
-        } else if (this.experience >= PlayerLevels.getMaxExperence()) {
+        isValidExperience(experience);
+
+        if (isMaxExperience()) {
             System.out.println("Player의 경험치가 MAX값이므로 적용할 수 없습니다.");
             return false;
         } else {
             this.experience += experience;
 
-            if(this.experience > PlayerLevels.getMaxExperence()) {
+            if(isMaxExperience()) {
                 this.experience = PlayerLevels.getMaxExperence();
             }
         }
         System.out.println("현재 경험치 : " + this.experience);
         return true;
+    }
+
+    private void isValidExperience(int experience) {
+        if(experience < 0) {
+            throw new IllegalArgumentException("experience must be greater than or equal to 0");
+        }
+    }
+
+    private boolean isMaxExperience() {
+        return this.experience >= PlayerLevels.getMaxExperence();
     }
 
     public int getExperience() {
