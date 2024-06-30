@@ -1,11 +1,23 @@
 package domain.stat.level;
 
-import domain.stat.PlayerLevel;
+import java.util.Objects;
 
 public class Four extends PlayerLevel {
 
     public static final int MIN_EXP=3000;
     public static final int MAX_EXP=Five.MIN_EXP - 1;
+
+    private final int level = 4;
+
+    @Override
+    public int getMinExp() {
+        return MIN_EXP;
+    }
+
+    @Override
+    public int getMaxExp() {
+        return MAX_EXP;
+    }
 
     @Override
     public void walk() {
@@ -28,16 +40,18 @@ public class Four extends PlayerLevel {
     }
 
     @Override
-    public int getMinExp() {
-        return MIN_EXP;
+    public String toString() {
+        return "Level 4";
     }
 
     @Override
-    public int getMaxExp() {
-        return MAX_EXP;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        return o instanceof Four;
     }
+
     @Override
-    public String toString() {
-        return "레벨 4";
+    public int hashCode() {
+        return Objects.hashCode(level);
     }
 }
