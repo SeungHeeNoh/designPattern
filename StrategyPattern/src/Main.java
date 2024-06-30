@@ -53,9 +53,10 @@ public class Main {
 
             System.out.println("========================");
 
-            player.adjustExp(-9000);
-            System.out.println(player.printPlayerLevel());
-            player.action(5);
+            // 해당 동작성은 Test 메소드에서 확인하도록 이관
+//            player.adjustExp(-9000);
+//            System.out.println(player.printPlayerLevel());
+//            player.action(5);
         } catch (Exception e) {
             e.printStackTrace();
         }
