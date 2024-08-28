@@ -1,5 +1,6 @@
 package domain;
 
+import domain.save.SaveFile;
 import domain.stat.Experience;
 import domain.stat.level.PlayerLevel;
 import domain.stat.level.PlayerLevels;
@@ -33,5 +34,14 @@ public class Player {
 
     public void action(int count) {
         playerLevel.action(count);
+    }
+
+    public SaveFile save() {
+        return new SaveFile(exp.copy(), playerLevel);
+    }
+
+    public void restore(SaveFile saveFile) {
+        this.playerLevel = saveFile.playerLevel();
+        this.exp.restore(saveFile.exp());
     }
 }

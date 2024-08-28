@@ -43,6 +43,17 @@ public class Experience {
         return this.experience;
     }
 
+    public Experience copy() {
+        return new Experience(this.experience);
+    }
+
+    public void restore(Experience experience) {
+        isValidExperience(experience.getExperience());
+
+        this.experience = experience.getExperience();
+        System.out.println("경험치가 reload 되었습니다. 현재 경험치 : " + this.experience );
+    }
+
     @Override
     public String toString() {
         return "Experience{" +
