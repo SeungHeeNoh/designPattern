@@ -7,6 +7,8 @@ import java.util.List;
 public class PlayerLevels {
     private final static List<PlayerLevel> levels = List.of(new One(), new Two(), new Three(), new Four(), new Five());
 
+    private PlayerLevels() {}
+
     public static PlayerLevel getNextLevel(PlayerLevel nowLevel, Experience exp) {
         int startLevel = getNowLevelIndex(nowLevel);
 
