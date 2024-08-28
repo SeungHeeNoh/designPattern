@@ -1,38 +1,29 @@
 ## 프로젝트 설명
-경험치를 획득하면 레벨업을 하는 로직을 strategy pattern을 이용하여 구현했다.
+기존에 구현된 strategy pattern 프로젝트에 memento pattern을 적용했다.
 
-### 레벨 설명
-레벨업을 관리하기 위해서 멤버변수로 Level 리스트를 갖는 일급 컬렉션(PlayerLevels)을 생성했다.
-- Level 1 : 캐릭터 생성시 default 레벨
-- Level 2 : 누적 경험치 1000을 얻었을 때 2레벨로 레벨업한다.
-- Level 3 : 누적 경험치 2000을 얻었을 때 3레벨로 레벨업한다.
-- Level 4 : 누적 경험치 3000을 얻었을 때 4레벨로 레벨업한다.
-- Level 5 : 누적 경험치 5000을 얻었을 때 5레벨로 레벨업한다. 최고 레벨이다.
+### class 설명 
+#### o Save file
+현재 레벨과 경험치를 저장하는 객체이다.
 
-### 예외 처리
-- 마이너스 경험치는 입력될 수 없으며 입력시 IllegalArgumentException이 발생한다.
-- 전달된 현재 레벨이 레벨 일급 컬렉션에 존재하지 않으면 IllegalArgumentException이 발생한다.
-관련한 예외 처리는 PlayerTest에서 Junit5를 이용하여 검증했다.
+#### o SaveFiles
+- careTaker 역할을 하는 일급컬렉션이다.
+- 동작성 검증을 위해 SaveFilesTest에서 Juit5를 이용하여 검증하였다.
 
+### class diagram
 ```mermaid
 classDiagram
-    Experience --* Player : exp
-    PlayerLevel --* Player : playerLevel
-    
-    
-    PlayerLevel  <|-- One
-    PlayerLevel  <|-- Two
-    PlayerLevel  <|-- Three
-    PlayerLevel  <|-- Four
-    PlayerLevel  <|-- Five
-    
     Player ..> PlayerLevels : uses
-    PlayerLevels o-- One : aggregation
-    PlayerLevels o-- Two : aggregation
-    PlayerLevels o-- Three : aggregation
-    PlayerLevels o-- Four : aggregation
-    PlayerLevels o-- Five : aggregation
+    SaveFiles o--> SaveFile : aggregation
 
+    Player *-- Experience : exp
+    Player *-- PlayerLevel : playerLevel
+
+    SaveFile *-- Experience : exp
+    SaveFile *-- PlayerLevel : playerLevel
+    
+    Player ..> SaveFile : dependency
+
+    namespace Originator {
     class Player {
         -String name
         -PlayerLevel playerLevel
@@ -42,7 +33,32 @@ classDiagram
         +printPlayerLevel() String
         +adjustExp(int exp) String
         +action(int count)
+        +save() SaveFile
+        +restore(SaveFile saveFile)
     }
+}
+
+
+namespace Memento {
+    class SaveFile {
+        -Experience exp
+        -PlayerLevel playerlevel
+        +Savefile(Experience exp, PlayerLevel playerlevel)
+        +equals() boolean
+        +hashcode() int
+        +toString() String
+    }
+
+}
+
+namespace CareTaker {
+    class SaveFiles {
+        -List<SaveFile> saveFiles
+        +createSaveFile(Player player)
+        +reloadSaveFile(Player player)
+    }
+}
+
 
     class Experience {
         -int experience
@@ -52,9 +68,11 @@ classDiagram
         -isValidExperience(experience)
         -isMaxExperience() boolean
         +getExperience() int
+        +copy() Experience
+        +restore(Experience experience)
         +toString() String
     }
-    
+
     class PlayerLevels {
         -List<PlayerLevel> levels$
         +getNextLevel(nowLevel, exp) PlayerLevel$
@@ -63,7 +81,6 @@ classDiagram
         -getMaxExperence() int$
     }
 
-namespace level {
     class PlayerLevel {
         <<abstract>>
         +getMinExp()*
@@ -75,90 +92,4 @@ namespace level {
         +fly()
         +action(count)
     }
-
-    class One {
-        +int MIN_EXP
-        +int MAX_EXP
-        +int level
-        +getMinExp()
-        +getMaxExp()
-        +walk()
-        +jump()
-        +run()
-        +dash()
-        +fly()
-        +action(count)
-        +toString() String
-        +equals(Object o) boolean
-        +hashCode() int
-    }
-    
-    class Two {
-        +int MIN_EXP
-        +int MAX_EXP
-        +int level
-        +getMinExp()
-        +getMaxExp()
-        +walk()
-        +jump()
-        +run()
-        +dash()
-        +fly()
-        +action(count)
-        +toString() String
-        +equals(Object o) boolean
-        +hashCode() int
-    }
-
-    class Three {
-        +int MIN_EXP
-        +int MAX_EXP
-        +int level
-        +getMinExp()
-        +getMaxExp()
-        +walk()
-        +jump()
-        +run()
-        +dash()
-        +fly()
-        +action(count)
-        +toString() String
-        +equals(Object o) boolean
-        +hashCode() int
-    }
-
-    class Four {
-        +int MIN_EXP
-        +int MAX_EXP
-        +int level
-        +getMinExp()
-        +getMaxExp()
-        +walk()
-        +jump()
-        +run()
-        +dash()
-        +fly()
-        +action(count)
-        +toString() String
-        +equals(Object o) boolean
-        +hashCode() int
-    }
-
-    class Five {
-        +int MIN_EXP
-        +int MAX_EXP
-        +int level
-        +getMinExp()
-        +getMaxExp()
-        +walk()
-        +jump()
-        +run()
-        +dash()
-        +fly()
-        +action(count)
-        +toString() String
-        +equals(Object o) boolean
-        +hashCode() int
-    }
-}
 ```
