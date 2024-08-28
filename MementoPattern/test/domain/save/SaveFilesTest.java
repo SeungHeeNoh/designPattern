@@ -65,4 +65,18 @@ class SaveFilesTest {
         assertThat(player.printPlayerLevel())
                 .isEqualTo("Level 1");
     }
+
+    @Test
+    void givenNoSaveFile_whenReloadMemento_thenDoNothing() {
+        // given
+        assertThat(player.printPlayerLevel())
+                .isEqualTo("Level 1");
+
+        // when - then
+        System.out.println("reload save file");
+        saveFiles.reloadSaveFile(player);
+
+        assertThat(player.printPlayerLevel())
+                .isEqualTo("Level 1");
+    }
 }

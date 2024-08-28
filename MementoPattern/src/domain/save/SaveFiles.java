@@ -14,6 +14,11 @@ public class SaveFiles {
     }
 
     public void reloadSaveFile(Player player) {
-        player.restore(saveFiles.pop());
+        if(!saveFiles.isEmpty()) {
+            player.restore(saveFiles.pop());
+        } else {
+            System.out.println("save file is not exist.");
+        }
+
     }
 }
