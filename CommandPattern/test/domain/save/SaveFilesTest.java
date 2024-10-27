@@ -8,12 +8,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class SaveFilesTest {
     private Player player;
-    private SaveFiles saveFiles;
 
     @BeforeEach
     void setUp() {
         player = new Player("test");
-        saveFiles = new SaveFiles();
     }
 
     @Test
@@ -22,14 +20,14 @@ class SaveFilesTest {
         assertThat(player.printPlayerLevel())
                 .isEqualTo("Level 1");
 
-        saveFiles.createSaveFile(player);
+        player.save();
         player.adjustExp(5000);
         assertThat(player.printPlayerLevel())
                 .isEqualTo("Level 5");
 
         // when
         System.out.println("reload save file");
-        saveFiles.reloadSaveFile(player);
+        player.restore();
 
         // then
         assertThat(player.printPlayerLevel())
@@ -42,25 +40,25 @@ class SaveFilesTest {
         assertThat(player.printPlayerLevel())
                 .isEqualTo("Level 1");
 
-        saveFiles.createSaveFile(player);
+        player.save();
         player.adjustExp(1000);
         assertThat(player.printPlayerLevel())
                 .isEqualTo("Level 2");
 
-        saveFiles.createSaveFile(player);
+        player.save();
         player.adjustExp(2000);
         assertThat(player.printPlayerLevel())
                 .isEqualTo("Level 4");
 
         // when - then
         System.out.println("reload save file");
-        saveFiles.reloadSaveFile(player);
+        player.restore();
 
         assertThat(player.printPlayerLevel())
                 .isEqualTo("Level 2");
 
         System.out.println("reload save file");
-        saveFiles.reloadSaveFile(player);
+        player.restore();
 
         assertThat(player.printPlayerLevel())
                 .isEqualTo("Level 1");
@@ -74,7 +72,7 @@ class SaveFilesTest {
 
         // when - then
         System.out.println("reload save file");
-        saveFiles.reloadSaveFile(player);
+        player.restore();
 
         assertThat(player.printPlayerLevel())
                 .isEqualTo("Level 1");
