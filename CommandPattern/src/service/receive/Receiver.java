@@ -6,10 +6,14 @@ import domain.command.*;
 import java.util.HashMap;
 import java.util.Map;
 
-import static common.ActionId.*;
-
 public class Receiver {
     Map<Integer, Command> commands = new HashMap<>(5);
+
+    public static final int WALK_COMMAND_ID = 1;
+    public static final int JUMP_COMMAND_ID = 2;
+    public static final int RUN_COMMAND_ID = 3;
+    public static final int DASH_COMMAND_ID = 4;
+    public static final int FLY_COMMAND_ID = 5;
 
     public Receiver(Player player) {
         WalkCommand walkCommand = new WalkCommand(player);

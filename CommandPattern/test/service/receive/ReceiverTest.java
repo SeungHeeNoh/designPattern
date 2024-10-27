@@ -5,9 +5,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static common.ActionId.*;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static service.receive.Receiver.*;
 
 class ReceiverTest {
 
