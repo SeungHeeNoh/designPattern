@@ -17,52 +17,64 @@ class PlayerTest {
         player = new Player("nsh");
     }
 
+    private void action(Player player, int count) {
+        player.walk();
+
+        for(int i=0; i<count; i++) {
+            player.jump();
+        }
+
+        player.run();
+        player.dash();
+        player.fly();
+    }
+
     @Test
     void test() {
         System.out.println(player.printPlayerLevel());
-        player.action(5);
+        action(player, 5);
 
         System.out.println("========================");
 
         player.adjustExp(100);
         System.out.println(player.printPlayerLevel());
-        player.action(5);
+        action(player, 5);
 
         System.out.println("========================");
 
         player.adjustExp(1000);
         System.out.println(player.printPlayerLevel());
-        player.action(5);
+        action(player, 5);
 
         System.out.println("========================");
 
         player.adjustExp(2000);
         System.out.println(player.printPlayerLevel());
-        player.action(5);
+        action(player, 5);
 
         System.out.println("========================");
 
         player.adjustExp(3000);
         System.out.println(player.printPlayerLevel());
-        player.action(5);
+        action(player, 5);
 
         System.out.println("========================");
 
         player.adjustExp(4000);
         System.out.println(player.printPlayerLevel());
-        player.action(5);
+        action(player, 5);
 
         System.out.println("========================");
 
         player.adjustExp(5000);
         System.out.println(player.printPlayerLevel());
-        player.action(5);
+        action(player, 5);
 
         System.out.println("========================");
 
         player.adjustExp(9000);
         System.out.println(player.printPlayerLevel());
-        player.action(5);
+        action(player, 5);
 
         System.out.println("========================");
     }

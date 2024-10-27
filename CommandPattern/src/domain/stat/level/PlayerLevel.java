@@ -16,15 +16,4 @@ public abstract class PlayerLevel {
 
     }
 
-    public void action(int count) {
-        walk();
-
-        for(int i=0; i<count; i++) {
-            jump();
-        }
-
-        run();
-        dash();
-        fly();
-    }
 }

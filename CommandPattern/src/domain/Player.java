@@ -35,10 +35,28 @@ public class Player {
         }
     }
 
-    public void action(int count) {
-        playerLevel.action(count);
+    /**
+     * player 동작 처리
+     */
+    public void walk() {
+        playerLevel.walk();
     }
 
+    public void jump() {
+        playerLevel.jump();
+    }
+
+    public void run() {
+        playerLevel.run();
+    }
+
+    public void dash() {
+        playerLevel.dash();
+    }
+
+    public void fly() {
+        playerLevel.fly();
+    }
 
     /**
      * player save/reload 처리
