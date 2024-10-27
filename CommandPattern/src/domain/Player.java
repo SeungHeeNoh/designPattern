@@ -12,6 +12,9 @@ public class Player {
     private final Experience exp;
     private final SaveFiles saveFiles;
 
+    /**
+     * Player 정보
+     */
     public Player(String name) {
         this.name = name;
         this.playerLevel = PlayerLevels.getFirstLevel();
@@ -27,6 +30,9 @@ public class Player {
         return playerLevel.toString();
     }
 
+    /**
+     * player 경험치 처리 
+     */
     public void adjustExp(int exp) {
         System.out.println(exp + " 경험치를 얻었습니다.");
 
