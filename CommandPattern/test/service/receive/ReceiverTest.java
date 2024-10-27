@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import static common.ActionId.*;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -22,7 +23,7 @@ class ReceiverTest {
     @Test
     void givenWalkId_whenExecuteCommand_thenCallWalkMethod() {
         // given
-        int param = 1;
+        int param = WALK_COMMAND_ID;
 
         // when
         receiver.executeCommand(param);
@@ -35,7 +36,7 @@ class ReceiverTest {
     @Test
     void givenJumpId_whenExecuteCommand_thenCallJumpMethod() {
         // given
-        int param = 2;
+        int param = JUMP_COMMAND_ID;
 
         // when
         receiver.executeCommand(param);
@@ -48,7 +49,7 @@ class ReceiverTest {
     @Test
     void givenRunId_whenExecuteCommand_thenCallRunMethod() {
         // given
-        int param = 3;
+        int param = RUN_COMMAND_ID;
 
         // when
         receiver.executeCommand(param);
@@ -61,7 +62,7 @@ class ReceiverTest {
     @Test
     void givenDashId_whenExecuteCommand_thenCallDashMethod() {
         // given
-        int param = 4;
+        int param = DASH_COMMAND_ID;
 
         // when
         receiver.executeCommand(param);
@@ -74,7 +75,7 @@ class ReceiverTest {
     @Test
     void givenFlyId_whenExecuteCommand_thenCallFlyMethod() {
         // given
-        int param = 5;
+        int param = FLY_COMMAND_ID;
 
         // when
         receiver.executeCommand(param);
@@ -87,7 +88,7 @@ class ReceiverTest {
     @Test
     void givenWalkIdAndExperience_whenExecuteCommand_thenCallFlyMethod() {
         // given
-        int param = 1;
+        int param = WALK_COMMAND_ID;
 
         // when
         receiver.executeCommand(param);

@@ -6,6 +6,8 @@ import domain.command.*;
 import java.util.HashMap;
 import java.util.Map;
 
+import static common.ActionId.*;
+
 public class Receiver {
     Map<Integer, Command> commands = new HashMap<>(5);
 
@@ -16,11 +18,11 @@ public class Receiver {
         DashCommand dashCommand = new DashCommand(player);
         FlyCommand flyCommand = new FlyCommand(player);
 
-        commands.put(1, walkCommand);
-        commands.put(2, jumpCommand);
-        commands.put(3, runCommand);
-        commands.put(4, dashCommand);
-        commands.put(5, flyCommand);
+        commands.put(WALK_COMMAND_ID, walkCommand);
+        commands.put(JUMP_COMMAND_ID, jumpCommand);
+        commands.put(RUN_COMMAND_ID, runCommand);
+        commands.put(DASH_COMMAND_ID, dashCommand);
+        commands.put(FLY_COMMAND_ID, flyCommand);
     }
 
     public void executeCommand(int i) {
