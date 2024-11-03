@@ -1,4 +1,4 @@
-package service.receive;
+package controller;
 
 import domain.Player;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,17 +7,17 @@ import org.mockito.Mockito;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static service.receive.Receiver.*;
+import static controller.PlayerController.*;
 
-class ReceiverTest {
+class PlayerControllerTest {
 
     private Player player;
-    private Receiver receiver;
+    private PlayerController playerController;
 
     @BeforeEach
     void setUp() {
         player = Mockito.spy(new Player("wizard"));
-        receiver = Mockito.spy(new Receiver(player));
+        playerController = Mockito.spy(new PlayerController(player));
     }
 
     @Test
@@ -26,10 +26,10 @@ class ReceiverTest {
         int param = WALK_COMMAND_ID;
 
         // when
-        receiver.executeCommand(param);
+        playerController.executeCommand(param);
 
         // then
-        verify(receiver).executeCommand(param);
+        verify(playerController).executeCommand(param);
         verify(player).walk();
     }
 
@@ -39,10 +39,10 @@ class ReceiverTest {
         int param = JUMP_COMMAND_ID;
 
         // when
-        receiver.executeCommand(param);
+        playerController.executeCommand(param);
 
         // then
-        verify(receiver).executeCommand(param);
+        verify(playerController).executeCommand(param);
         verify(player).jump();
     }
 
@@ -52,10 +52,10 @@ class ReceiverTest {
         int param = RUN_COMMAND_ID;
 
         // when
-        receiver.executeCommand(param);
+        playerController.executeCommand(param);
 
         // then
-        verify(receiver).executeCommand(param);
+        verify(playerController).executeCommand(param);
         verify(player).run();
     }
 
@@ -65,10 +65,10 @@ class ReceiverTest {
         int param = DASH_COMMAND_ID;
 
         // when
-        receiver.executeCommand(param);
+        playerController.executeCommand(param);
 
         // then
-        verify(receiver).executeCommand(param);
+        verify(playerController).executeCommand(param);
         verify(player).dash();
     }
 
@@ -78,10 +78,10 @@ class ReceiverTest {
         int param = FLY_COMMAND_ID;
 
         // when
-        receiver.executeCommand(param);
+        playerController.executeCommand(param);
 
         // then
-        verify(receiver).executeCommand(param);
+        verify(playerController).executeCommand(param);
         verify(player).fly();
     }
 
@@ -91,12 +91,12 @@ class ReceiverTest {
         int param = WALK_COMMAND_ID;
 
         // when
-        receiver.executeCommand(param);
+        playerController.executeCommand(param);
         player.adjustExp(7000);
-        receiver.executeCommand(param);
+        playerController.executeCommand(param);
 
         // then
-        verify(receiver, times(2)).executeCommand(param);
+        verify(playerController, times(2)).executeCommand(param);
         verify(player, times(2)).walk();
     }
 }

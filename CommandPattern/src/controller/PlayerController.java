@@ -1,4 +1,4 @@
-package service.receive;
+package controller;
 
 import domain.Player;
 import domain.command.*;
@@ -6,7 +6,7 @@ import domain.command.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Receiver {
+public class PlayerController {
     Map<Integer, Command> commands = new HashMap<>(5);
 
     public static final int EXIT_COMMAND_ID = 0;
@@ -16,7 +16,7 @@ public class Receiver {
     public static final int DASH_COMMAND_ID = 4;
     public static final int FLY_COMMAND_ID = 5;
 
-    public Receiver(Player player) {
+    public PlayerController(Player player) {
         WalkCommand walkCommand = new WalkCommand(player);
         JumpCommand jumpCommand = new JumpCommand(player);
         RunCommand runCommand = new RunCommand(player);
