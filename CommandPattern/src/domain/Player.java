@@ -1,11 +1,13 @@
 package domain;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import domain.save.SaveFile;
 import domain.save.SaveFiles;
 import domain.stat.Experience;
 import domain.stat.level.PlayerLevel;
 import domain.stat.level.PlayerLevels;
 
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Player {
     private String name;
     private PlayerLevel playerLevel;
