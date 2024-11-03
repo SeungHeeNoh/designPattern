@@ -42,7 +42,7 @@ public class PlayerLevels {
         return levels.get(0);
     }
 
-    public static int getMaxExperence() {
+    public static int getMaxExperience() {
         return levels.get(levels.size() - 1).getMaxExp();
     }
 }

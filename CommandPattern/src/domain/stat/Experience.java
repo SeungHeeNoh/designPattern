@@ -22,7 +22,7 @@ public class Experience {
             this.experience += experience;
 
             if(isMaxExperience()) {
-                this.experience = PlayerLevels.getMaxExperence();
+                this.experience = PlayerLevels.getMaxExperience();
             }
         }
         System.out.println("현재 경험치 : " + this.experience);
@@ -36,7 +36,7 @@ public class Experience {
     }
 
     private boolean isMaxExperience() {
-        return this.experience >= PlayerLevels.getMaxExperence();
+        return this.experience >= PlayerLevels.getMaxExperience();
     }
 
     public int getExperience() {
