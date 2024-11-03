@@ -7,21 +7,29 @@ import domain.stat.Experience;
 import domain.stat.level.PlayerLevel;
 import domain.stat.level.PlayerLevels;
 
+import java.util.List;
+
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Player {
     private String name;
-    private PlayerLevel playerLevel;
-    private final Experience exp;
-    private final SaveFiles saveFiles;
+    private PlayerLevel playerLevel = PlayerLevels.getFirstLevel();
+    private final Experience exp = new Experience();
+    private final SaveFiles saveFiles = new SaveFiles();
 
     /**
      * Player 정보
      */
+    private Player() {
+    }
+
     public Player(String name) {
         this.name = name;
-        this.playerLevel = PlayerLevels.getFirstLevel();
-        this.exp = new Experience();
-        this.saveFiles = new SaveFiles();
+    }
+
+    public Player(String name, int exp, List<SaveFile> saveFiles) {
+        this.name = name;
+        this.adjustExp(exp);
+        this.saveFiles.init(saveFiles);
     }
 
     public String getName() {

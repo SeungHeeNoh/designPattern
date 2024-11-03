@@ -14,6 +14,10 @@ public class SaveFiles {
     @JsonSerialize(using = SaveFilesSerializer.class)
     private final Stack<SaveFile> saveFiles = new Stack<>();
 
+    public void init(List<SaveFile> saveFileList) {
+        saveFiles.addAll(saveFileList);
+    }
+
     public void createSaveFile(Player player) {
         SaveFile save = player.getPlayerSaveFile();
         System.out.println("save file : " + save.toString());
