@@ -1,17 +1,17 @@
-package domain.command;
+package service;
 
 import domain.Player;
 
-public class DashCommand implements Command {
+public class JumpCommand implements Command {
 
     private final Player player;
 
-    public DashCommand(Player player) {
+    public JumpCommand(Player player) {
         this.player = player;
     }
 
     @Override
     public void execute() {
-        player.dash();
+        player.jump();
     }
 }

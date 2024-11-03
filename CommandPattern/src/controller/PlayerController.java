@@ -1,7 +1,7 @@
 package controller;
 
 import domain.Player;
-import domain.command.*;
+import service.*;
 
 import java.util.HashMap;
 import java.util.Map;

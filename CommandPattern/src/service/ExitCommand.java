@@ -1,4 +1,4 @@
-package domain.command;
+package service;
 
 import domain.Player;
 import repository.PlayerRepository;

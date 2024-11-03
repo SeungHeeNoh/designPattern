@@ -1,4 +1,4 @@
-package domain.command;
+package service;
 
 public interface Command {
 

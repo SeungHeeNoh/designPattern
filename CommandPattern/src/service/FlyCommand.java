@@ -1,17 +1,17 @@
-package domain.command;
+package service;
 
 import domain.Player;
 
-public class RunCommand implements Command {
+public class FlyCommand implements Command {
 
     private final Player player;
 
-    public RunCommand(Player player) {
+    public FlyCommand(Player player) {
         this.player = player;
     }
 
     @Override
     public void execute() {
-        player.run();
+        player.fly();
     }
 }
