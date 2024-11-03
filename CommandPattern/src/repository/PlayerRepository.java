@@ -9,6 +9,7 @@ import domain.stat.level.PlayerLevel;
 import domain.stat.level.PlayerLevels;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,24 +36,28 @@ public class PlayerRepository {
     }
 
     public Player loadPlayerInfo() throws IOException {
-        JsonNode rootNode = mapper.readTree(new File(filePath));
+        try {
+            JsonNode rootNode = mapper.readTree(new File(filePath));
 
-        // JSON 문자열을 JSONObject로 파싱
-        String name = rootNode.get("name").asText();
-        int exp = rootNode.get("exp").get("experience").asInt();
-        JsonNode playerSaveFileNodes = rootNode.get("saveFiles").get("saveFiles");
-        List<SaveFile> playerSaveFile = new ArrayList<>();
+            // JSON 문자열을 JSONObject로 파싱
+            String name = rootNode.get("name").asText();
+            int exp = rootNode.get("exp").get("experience").asInt();
+            List<SaveFile> playerSaveFile = new ArrayList<>();
+            JsonNode playerSaveFileNodes = rootNode.get("saveFiles").get("saveFiles");
 
-        for(JsonNode node : playerSaveFileNodes) {
-            Experience saveExp = mapper.convertValue(node.get("exp"), Experience.class);
-            int levelExp = node.get("playerLevel").get("minExp").asInt();
+            for (JsonNode node : playerSaveFileNodes) {
+                Experience saveExp = mapper.convertValue(node.get("exp"), Experience.class);
+                int levelExp = node.get("playerLevel").get("minExp").asInt();
 
-            PlayerLevel savePlayerLevel = PlayerLevels.getNextLevel(PlayerLevels.getFirstLevel(), new Experience(levelExp));
-            SaveFile saveFile = new SaveFile(saveExp, savePlayerLevel);
+                PlayerLevel savePlayerLevel = PlayerLevels.getNextLevel(PlayerLevels.getFirstLevel(), new Experience(levelExp));
+                SaveFile saveFile = new SaveFile(saveExp, savePlayerLevel);
 
-            playerSaveFile.add(saveFile);
+                playerSaveFile.add(saveFile);
+            }
+
+            return new Player(name, exp, playerSaveFile);
+        } catch (FileNotFoundException e) {
+            return new Player("wizard");
         }
-
-        return new Player(name, exp, playerSaveFile);
     }
 }
