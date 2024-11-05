@@ -34,7 +34,13 @@ design pattern을 공부하고 구현하였습니다.
     <tr>
         <td>2024.10.21</td>
         <td>Singleton Pattern</td>
-        <td>박은종의 객체지향 설계를 위한 디자인패턴 with 자바 > ch02_01.Memento</td>
+        <td>박은종의 객체지향 설계를 위한 디자인패턴 with 자바 > ch02_01.Singleton</td>
         <td><span><b>개선 keyword : 멀티쓰레드</b></span><br><br>- 멀티쓰레드 환경에서도 인스턴스 1개만 생성되도록 변경</td>
+    </tr>
+    <tr>
+        <td>2024.11.05</td>
+        <td>Command Pattern</td>
+        <td>박은종의 객체지향 설계를 위한 디자인패턴 with 자바 > ch11_01.Command</td>
+        <td><span><b>추가 기능 keyword : </b></span><br><br>- JSON 읽기/쓰기 기능 추가</td>
     </tr>
 </table>
